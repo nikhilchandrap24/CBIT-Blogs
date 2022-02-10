@@ -1,0 +1,85 @@
+{% extends 'home.html' %}
+
+{% block main %}
+
+<main>
+    <section class="container bg-light">
+        <section class="h-100 bg-dark">
+            <div class="container py-5 h-100">
+              <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col">
+                  <div class="card card-registration my-4">
+                    <div class="row g-0">
+                      <div class="col-xl-6 d-none d-xl-block mt-5 my-3">
+                        <img
+                          src="/static/student-registration.jpg"
+                          alt="Sample photo"
+                          class="img-fluid"
+                          style="border-top-left-radius: .25rem; border-bottom-left-radius: .25rem; margin: top 20%;"
+                        />
+                      </div>
+                      <div class="col-xl-6">
+                        <div class="card-body p-md-5 text-black">
+                          <h3 class=" text-uppercase fw-bold">SIGN UP</h3>
+                          <hr>
+                          <form method="POST" action="{% url 'success' %}" >
+                            {% csrf_token %}
+                          <div class="form-outline mb-4">
+                            <input type="text" id="form3Example9" class="form-control form-control-lg" placeholder="Name" name="names"/>
+                          </div>
+          
+                          <div class="form-outline mb-4">
+                            <input type="number" id="form3Example9" class="form-control form-control-lg" placeholder="Roll Number" name="roll"/>
+                            
+                          </div>
+                          
+                          <div class="row">
+                            <div class="col-md-10 mb-4">
+          
+                              <select class="select" name="branch" class="form-control form-control-lg">
+                                <option value="1">Branch</option>
+                                <option value="2">CSE</option>
+                                <option value="3">IT</option>
+                                <option value="4">ECE</option>
+                                <option value="4">EEE</option>
+                                <option value="4">Mechanical</option>
+                                <option value="4">Bio-Tech</option>
+                              </select>
+          
+                            </div>
+                          </div>
+
+                          <div class="form-outline mb-4">
+                            <input type="text" id="form3Example8" class="form-control form-control-lg" placeholder="Official Email-ID" name="email" />
+                            
+                          </div>
+
+                          <div class="form-outline mb-4">
+                            <input type="password" id="form3Example8" class="form-control form-control-lg" placeholder="Password" name="password"/>
+                            
+                          </div>
+
+                          <div class="form-outline mb-4">
+                            <input type="password" id="form3E xample8" class="form-control form-control-lg" placeholder="Confirm Password" name="confirm_password" />
+                            
+                          </div>
+                         
+                        <p id="alert"></p>
+                          
+                          
+                          <div class="d-flex justify-content-end pt-3">
+                            <input type="submit" class="btn btn-warning btn-lg ms-2"/>
+                          </div>
+                        </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+    </section>
+</main>
+
+{% endblock main %}

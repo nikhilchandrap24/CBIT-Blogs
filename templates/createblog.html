@@ -1,0 +1,39 @@
+{% extends 'home.html' %}
+{% block main%}
+
+<main class="container bg-light">
+  <section class="p-5">
+    <div class="">
+      <center>
+        <h1>Create a Blog!</h1>
+      </center>
+    </div>
+    <form method ="post" action="{% url 'writeblog' %}">
+        {% csrf_token %}
+        <input type="text" class="form-control" name="title" placeholder="Enter blog title here! " aria-label="Username"><br>
+
+        <select name = "category" class="btn btn-danger" style="background-color: rgb(214, 52, 60);">
+          <option>Category</option>
+          <option value="Internships">Internships</option>
+          <option value="Placements">Placements</option>
+          <option value ="Fests and Clubs">Fests and Clubs</option>
+          <option value = "Technical Blogs">Technical Blogs</option>
+          <option value="General">General</option>
+        </select>
+        <div style="color: red; font-size:small;padding:2px">
+          {{msg}}
+        </div>
+
+        <div class="form-floating mt-4">
+          <textarea class="form-control" name="blog" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 500px"></textarea>
+          <label for="floatingTextarea2">Write your blog here! </label>
+        </div>
+
+        <div class="d-flex justify-content-end pt-3 mb-2">
+          <input type="submit" class="btn btn-warning btn-lg ms-2"/>
+        </div>
+    </form>
+  </section>
+</main>
+
+{% endblock %}

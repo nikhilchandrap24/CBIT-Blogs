@@ -1,0 +1,71 @@
+{% extends 'home.html' %}
+{% load static %}
+{% static "images" as baseUrl %}
+{% block main %}
+  <main>
+    <ul class="nav nav-tabs bg-dark container-fluid p-2" >
+      
+      
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Category
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <li><a class="dropdown-item" href="internships">Internships</a></li>
+          <li><a class="dropdown-item" href="placements">Placements</a></li>
+          <li><a class="dropdown-item" href="fests_clubs">Fests and Clubs</a></li>
+          <li><a class="dropdown-item" href="technical">Technical Blogs</a></li>
+          <li><a class="dropdown-item" href="general">General</a></li>
+          
+        </ul>
+      </li>
+
+      {% if user.is_authenticated %}
+      <li>
+        <a class="btn btn-danger m-2" type="button" href="{% url 'writeblog' %}">Create a blog</a>
+      </li>
+      {% else %}
+      <li>
+        <a class="btn btn-danger m-2" type="button" href="{% url 'login'%}">Create a blog</a>
+      </li>
+      {% endif %}
+      <li class="col" style="text-align:right">
+        <form action="search">
+          <input class="py-1 rounded" type="text" id="Search" name="search" placeholder="  Search" aria-label="Search" onblur="search()">
+          <button class="btn btn-success m-2" type="submit">Search</button>
+        </form>
+      </li>
+    </ul>
+    
+
+    <section class='container shadow-lg p-3 mb-5 bg-body rounded' style="background-color: aliceblue;">
+      <div>
+        <h3>{{msg}}</h3>
+      </div>
+      {% for card in cards %}
+      <div class="card mb-3 mx-auto justify-content-center " style="max-height:1000px; max-width:1000px; padding:0%" >
+          <div class="row g-0">
+            <!-- <div class="col-md-3 justify-content-center my-5">
+              <img src="/static/default_user.jpg" class="img-fluid rounded-circle mx-5" alt="..." width="100px" height="100px">
+            </div> -->
+            <div class=" justify-content-center col-md-12">
+              <div class="card-body">
+                <h5 class="card-title" style="font-weight: bolder;">{{card.title}}</h5>
+                <p class="card-text gowun-font">{{ card.desc|truncatechars:150 }}</p>
+                <p class="card-text"><small class="text-muted">{{card.student.first_name}}  |  Category : {{card.category}}</small></p>
+                <a type="button" class="card-text btn btn-warning btn-sm ms-2" href="{% url 'blog' card.id %}">Read more</a>
+              </div>  
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+
+        
+
+      
+    </section>
+
+  </main>
+
+
+{% endblock main %}
